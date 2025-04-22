@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from .forms import UserRegistrationForm
-
-
+from webapp.models.courses import Course
+from webapp.models.assignment import Assignment
 
 
 def user_home(request):
@@ -49,3 +49,15 @@ def user_register(request):
     form = UserRegistrationForm()
     return render(request, 'registration/register.html', {"form":form})
 
+def course_detail(request, course_id):
+    try:
+        course = Course.objects.get(id=course_id)
+    except Course.DoesNotExist:
+        messages.error(request, "Course not found.")
+        return redirect('/')
+
+    return render(request, 'course/course_detail.html', {'course': course})
+
+def assignment_detail(request, assignment_id):
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+    return render(request, 'assignment/assignment_detail.html', {'assignment': assignment})

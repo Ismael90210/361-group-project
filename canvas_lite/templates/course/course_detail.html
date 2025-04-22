@@ -1,0 +1,12 @@
+{% extends "master.html" %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block content %}
+<div class="course-container">
+  <h2>{{ course.title }}</h2>
+  <p><strong>Course Code:</strong> {{ course.code }}</p>
+  <p><strong>Description:</strong> {{ course.description }}</p>
+  <p><strong>Instructor:</strong> {{ course.instructor }}</p>
+</div>
+{% endblock %}
